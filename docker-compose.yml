@@ -1,0 +1,13 @@
+version: "3"
+services: 
+    platform:
+        build: .
+        ports:
+            - 20003:80
+        depends_on:
+            - mysql
+    mysql:
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+        image: mysql:8.0
