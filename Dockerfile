@@ -1,8 +1,5 @@
 FROM ubuntu:18.04
 
-RUN sed -i 's/archive.ubuntu.com/mirrors.byrio.org/g' /etc/apt/sources.list
-RUN sed -i 's/security.ubuntu.com/mirrors.byrio.org/g' /etc/apt/sources.list
-
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     ca-certificates \
     apt-utils \
@@ -17,7 +14,7 @@ COPY bin /Plaguelands
 RUN rm -rf /etc/nginx/sites-enabled/default
 COPY www.conf /etc/nginx/sites-enabled/www.conf
 RUN chmod -R 777 /Plaguelands
-RUN python3 -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r /Plaguelands/SSTI/requirements.txt
+RUN python3 -m pip install -r /Plaguelands/SSTI/requirements.txt
 RUN service nginx restart
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
