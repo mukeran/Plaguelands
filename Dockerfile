@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     python3-pip
 
 COPY bin /Plaguelands
+RUN mkdir /Plaguelands/upload
 RUN rm -rf /etc/nginx/sites-enabled/default
 COPY www.conf /etc/nginx/sites-enabled/www.conf
 RUN chmod -R 777 /Plaguelands
